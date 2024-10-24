@@ -30,11 +30,11 @@ usernames = [
 ]
 
 # Common password for all users
-password = 'password'
+password = 'Dummy@2024'
 
 # Randomly select a username
 #username = random.choice(usernames)
-username ='aahtvtf376'
+username ='giva7186'
 # Output the randomly selected username and the common password
 # print(f"Selected Username: {username}")
 # print(f"Password: {password}")

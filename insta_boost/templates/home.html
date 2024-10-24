@@ -1,122 +1,447 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - InstaBotRequest</title>
+    <title>SocialBoost</title>
     <style>
+        /* CSS styles remain unchanged */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
         }
+
         .container {
+            width: 90%;
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            margin: auto;
+            overflow: hidden;
         }
-        h1 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
-        .subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-        .options {
+
+        .navbar .container {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
         }
-        .option {
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem;
-            width: 250px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-            color: white;
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a90e2;
         }
-        .option:hover {
-            transform: scale(1.05);
-        }
-        .option h2 {
-            margin-top: 1rem;
-        }
-        .icon {
-            font-size: 3rem;
-        }
-        .disclaimer {
-            text-align: center;
-            margin-top: 2rem;
-            opacity: 0.6;
-            font-size: 0.9rem;
-        }
-        nav {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+
+        .nav-links {
             display: flex;
         }
-        nav li {
-            margin-right: 2rem;
-        }
-        nav a {
-            color: white;
+
+        .nav-links a {
+            margin-left: 1rem;
             text-decoration: none;
+            color: #333;
             transition: color 0.3s ease;
         }
-        nav a:hover {
-            color: #fcb045;
+
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+
+        .auth-buttons a {
+            margin-left: 1rem;
+            text-decoration: none;
+            color: #fff;
+            background-color: #4a90e2;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .auth-buttons a:hover {
+            background-color: #357abd;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4a90e2, #8e44ad);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #4a90e2;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #4a90e2;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+        }
+
+        .features {
+            padding: 4rem 0;
+            background-color: #ffffff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background: linear-gradient(135deg, #f6f9fe, #eaf3fa);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #4a90e2, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .testimonials {
+            background-color: #f9f9f9;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #4a90e2;
+        }
+
+        footer {
+            background-color: #333;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-active a {
+                margin: 0.5rem 0;
+            }
+
+            .auth-buttons.nav-active {
+                margin-top: 1rem;
+            }
+
+            .auth-buttons.nav-active a {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-active a {
+                margin: 0.5rem 0;
+                color: #333;
+                text-decoration: none;
+            }
+
+            .auth-buttons.nav-active {
+                margin-top: 1rem;
+            }
+
+            .auth-buttons.nav-active a {
+                margin: 0.5rem 0;
+                background-color: #4a90e2;
+                color: #ffffff;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+            }
+        }
+
+        /* Add styles for the mobile menu overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
         }
     </style>
 </head>
+
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'forgot_password' %}">Forgot Password</a></li>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <h1>Welcome, {{ username }}!</h1>
-        <p class="subtitle">Boost your Instagram presence with ease</p>
-        
-        <div class="options">
-            <a href="{% url 'like' %}" class="option">
-                <div class="icon">👍</div>
-                <h2>Increase likes on a post</h2>
-            </a>
-            <a href="{% url 'comment' %}" class="option">
-                <div class="icon">💬</div>
-                <h2>Increase comments on a post</h2>
-            </a>
-            <a href="{% url 'follow' %}" class="option">
-                <div class="icon">👥</div>
-                <h2>Increase followers</h2>
-            </a>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SocialBoost</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="{% url 'aboutus' %}">About Us</a>
+                <a href="{% url 'contactus' %}">Contact Us</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}">Sign In</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
+    </nav>
+    <div class="mobile-menu-overlay"></div>
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome, {{ username }}!</h2>
+            <h1>Grow Your Instagram Authentically</h1>
+            <p>Learn strategies to increase your engagement and build a genuine following.</p>
+            <a href="#features" class="cta-button">Discover How</a>
+        </div>
+    </section>
 
-        <p class="disclaimer">Disclaimer: Use this tool responsibly and in accordance with Instagram's terms of service.</p>
-    </div>
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature">
+                    <a href="{% url 'like' %}" class="option" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="feature-icon" style="font-size: 3rem;">📸</div>
+                        <h2 style="margin: 1rem 0 0.5rem; font-weight: 600;">Increase likes on a post</h2>
+                        <p style="opacity: 0.8; line-height: 1.5;">
+                            Learn techniques to produce eye-catching, valuable posts that resonate with your audience.
+                        </p>
+                    </a>
+                </div>
+                <div class="feature">
+                    <a href="{% url 'comment' %}" class="option" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="feature-icon" style="font-size: 3rem;">🤝</div>
+                        <h2 style="margin: 1rem 0 0.5rem; font-weight: 600;">Increase comments on a post</h2>
+                        <p style="opacity: 0.8; line-height: 1.5;">
+                            Discover how to build real connections and foster a community around your brand.
+                        </p>
+                    </a>
+                </div>
+                <div class="feature">
+                    <a href="{% url 'follow' %}" class="option" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="feature-icon" style="font-size: 3rem;">📊</div>
+                        <h2 style="margin: 1rem 0 0.5rem; font-weight: 600;">Increase followers</h2>
+                        <p style="opacity: 0.8; line-height: 1.5;">
+                            Understand your metrics and use data-driven strategies to improve your reach.
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Students Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p>"SocialBoost taught me how to connect with my audience genuinely. My engagement has never been better!"</p>
+                    <p class="testimonial-author">- Sarah K., Lifestyle Blogger</p>
+                </div>
+                <div class="testimonial">
+                    <p>"The strategies I learned here helped me grow my business account ethically and sustainably."</p>
+                    <p class="testimonial-author">- Mike T., Small Business Owner</p>
+                </div>
+                <div class="testimonial">
+                    <p>"I've tried many courses, but SocialBoost truly stands out. It's comprehensive and effective!"</p>
+                    <p class="testimonial-author">- Emma R., Fitness Influencer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p>&copy; 2024 SocialBoost. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('nav-active');
+            authButtons.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        }
+
+        hamburger.addEventListener('click', toggleMobileMenu);
+
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a, .auth-buttons a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('nav-active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>

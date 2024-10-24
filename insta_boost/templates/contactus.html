@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password - SocialBoost</title>
+    <title>Contact Us - SocialBoost</title>
     <style>
         * {
             box-sizing: border-box;
@@ -61,9 +59,8 @@
             align-items: center;
             padding: 6rem 2rem 2rem;
             background: linear-gradient(135deg, #4a90e2, #8e44ad);
-            margin-top: 60px; /* Space for fixed navbar */
         }
-        .form-container {
+        .contact-container {
             background-color: #ffffff;
             border-radius: 15px;
             padding: 2rem;
@@ -77,44 +74,40 @@
             margin-bottom: 1.5rem;
             font-size: 2rem;
         }
-        /* Removed alert styles */
-        .message {
-            color: black; /* Set text color to black */
-            margin-bottom: 1rem; /* Add some space below the message */
-        }
         form {
             display: flex;
             flex-direction: column;
         }
         label {
-            display: block;
             margin-bottom: 0.5rem;
             color: #333;
             font-weight: bold;
         }
-        input {
+        input, textarea {
             width: 100%;
             padding: 0.75rem;
+            margin-bottom: 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
-            margin-bottom: 1rem;
         }
-        input:focus {
-            outline: none;
-            border-color: #4a90e2;
+        textarea {
+            min-height: 150px;
+            resize: vertical;
         }
-        button {
+        .button {
+            display: inline-block;
             background-color: #4a90e2;
             color: white;
-            border: none;
-            padding: 0.75rem;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
             font-size: 1.1rem;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-        button:hover {
+        .button:hover {
             background-color: #357abd;
             transform: translateY(-2px);
         }
@@ -125,7 +118,7 @@
             padding: 1rem 0;
             margin-top: auto;
         }
-        .message {
+        .alert {
             background-color: #f8d7da;
             color: #721c24;
             padding: 1rem;
@@ -147,23 +140,35 @@
     </nav>
 
     <div class="main-content">
-        <div class="form-container">
-            <h1>Forgot Password</h1>
+        <div class="contact-container">
+            <h1>Contact Us</h1>
 
-            <!-- Message display section -->
+            <!-- Display success or error messages -->
             {% if messages %}
-                {% for message in messages %}
-                    <div class="message">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+        <div>
+            {% for message in messages %}
+                <div class="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
-            <form method="POST">
+            <form action="{% url 'contactus' %}" method="post">
                 {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
                 <label for="email">Email:</label>
-                <input type="email" name="email" required>
-                <button type="submit">Send OTP</button>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="button">Send Message</button>
             </form>
         </div>
     </div>
@@ -183,13 +188,18 @@
 
 
 
-{% comment %} 
-<!DOCTYPE html>
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password - SocialBoost</title>
+    <title>Contact Us - SocialBoost</title>
     <style>
         * {
             box-sizing: border-box;
@@ -245,9 +255,8 @@
             align-items: center;
             padding: 6rem 2rem 2rem;
             background: linear-gradient(135deg, #4a90e2, #8e44ad);
-            margin-top: 60px; /* Space for fixed navbar */
         }
-        .form-container {
+        .contact-container {
             background-color: #ffffff;
             border-radius: 15px;
             padding: 2rem;
@@ -261,47 +270,40 @@
             margin-bottom: 1.5rem;
             font-size: 2rem;
         }
-        .alert {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            color: black;  /* Change text color to black */
-            background-color: transparent; /* Remove the background color */
-            border: 1px solid #ccc; /* Optional: Add a border for visibility */
-        }
         form {
             display: flex;
             flex-direction: column;
         }
         label {
-            display: block;
             margin-bottom: 0.5rem;
             color: #333;
             font-weight: bold;
         }
-        input {
+        input, textarea {
             width: 100%;
             padding: 0.75rem;
+            margin-bottom: 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
-            margin-bottom: 1rem;
         }
-        input:focus {
-            outline: none;
-            border-color: #4a90e2;
+        textarea {
+            min-height: 150px;
+            resize: vertical;
         }
-        button {
+        .button {
+            display: inline-block;
             background-color: #4a90e2;
             color: white;
-            border: none;
-            padding: 0.75rem;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
             font-size: 1.1rem;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-        button:hover {
+        .button:hover {
             background-color: #357abd;
             transform: translateY(-2px);
         }
@@ -312,6 +314,15 @@
             padding: 1rem 0;
             margin-top: auto;
         }
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -320,28 +331,37 @@
             <a href="{% url 'home' %}" class="logo">SocialBoost</a>
             <div class="nav-links">
                 <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'contactus' %}">Contact</a>
             </div>
         </div>
     </nav>
 
     <div class="main-content">
-        <div class="form-container">
-            <h1>Forgot Password</h1>
+        <div class="contact-container">
+            <h1>Contact Us</h1>
 
-            <!-- Message display section -->
+            <!-- Display success or error messages -->
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
-                        {{ message }}
-                    </div>
+                    <div class="alert">{{ message }}</div>
                 {% endfor %}
             {% endif %}
 
-            <form method="POST">
+            <form action="{% url 'contactus' %}" method="post">
                 {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
                 <label for="email">Email:</label>
-                <input type="email" name="email" required>
-                <button type="submit">Send OTP</button>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="button">Send Message</button>
             </form>
         </div>
     </div>
@@ -359,13 +379,12 @@
 
 
 
-
 {% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password - SocialBoost</title>
+    <title>Contact Us - SocialBoost</title>
     <style>
         * {
             box-sizing: border-box;
@@ -421,9 +440,8 @@
             align-items: center;
             padding: 6rem 2rem 2rem;
             background: linear-gradient(135deg, #4a90e2, #8e44ad);
-            margin-top: 60px; /* Space for fixed navbar */
         }
-        .form-container {
+        .contact-container {
             background-color: #ffffff;
             border-radius: 15px;
             padding: 2rem;
@@ -437,51 +455,40 @@
             margin-bottom: 1.5rem;
             font-size: 2rem;
         }
-        .alert {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            color: white;
-        }
-        .alert.success {
-            background-color: #4caf50; /* Green for success */
-        }
-        .alert.error {
-            background-color: #f44336; /* Red for errors */
-        }
         form {
             display: flex;
             flex-direction: column;
         }
         label {
-            display: block;
             margin-bottom: 0.5rem;
             color: #333;
             font-weight: bold;
         }
-        input {
+        input, textarea {
             width: 100%;
             padding: 0.75rem;
+            margin-bottom: 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
-            margin-bottom: 1rem;
         }
-        input:focus {
-            outline: none;
-            border-color: #4a90e2;
+        textarea {
+            min-height: 150px;
+            resize: vertical;
         }
-        button {
+        .button {
+            display: inline-block;
             background-color: #4a90e2;
             color: white;
-            border: none;
-            padding: 0.75rem;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
             font-size: 1.1rem;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-        button:hover {
+        .button:hover {
             background-color: #357abd;
             transform: translateY(-2px);
         }
@@ -500,28 +507,29 @@
             <a href="{% url 'home' %}" class="logo">SocialBoost</a>
             <div class="nav-links">
                 <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'contactus' %}">Contact</a>
             </div>
         </div>
     </nav>
 
     <div class="main-content">
-        <div class="form-container">
-            <h1>Forgot Password</h1>
-
-            <!-- Message display section -->
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-
-            <form method="POST">
+        <div class="contact-container">
+            <h1>Contact Us</h1>
+            <form action="{% url 'contactus' %}" method="post">
                 {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
                 <label for="email">Email:</label>
-                <input type="email" name="email" required>
-                <button type="submit">Send OTP</button>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="button">Send Message</button>
             </form>
         </div>
     </div>
@@ -530,7 +538,4 @@
         <p>&copy; 2024 SocialBoost. All rights reserved.</p>
     </footer>
 </body>
-</html>
-
-
- {% endcomment %}
+</html> {% endcomment %}
