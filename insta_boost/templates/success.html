@@ -1,0 +1,78 @@
+{% comment %} <!-- success.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+</head>
+<body>
+    <h1>Request Successful!</h1>
+    <p>Your request has been successfully submitted.</p>
+    <a href="{% url 'home' %}">Return to Home</a>
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        a {
+            display: inline-block;
+            background-color: #fcb045;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        a:hover {
+            background-color: #fd1d1d;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Request Successful!</h1>
+        <p>Your request has been successfully submitted.</p>
+        <a href="{% url 'home' %}">Return to Home</a>
+    </div>
+</body>
+</html>

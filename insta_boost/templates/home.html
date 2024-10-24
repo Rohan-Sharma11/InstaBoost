@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - InstaBotRequest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        .options {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .option {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem;
+            width: 250px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+        .option:hover {
+            transform: scale(1.05);
+        }
+        .option h2 {
+            margin-top: 1rem;
+        }
+        .icon {
+            font-size: 3rem;
+        }
+        .disclaimer {
+            text-align: center;
+            margin-top: 2rem;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        nav {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-right: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #fcb045;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'forgot_password' %}">Forgot Password</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <p class="subtitle">Boost your Instagram presence with ease</p>
+        
+        <div class="options">
+            <a href="{% url 'like' %}" class="option">
+                <div class="icon">👍</div>
+                <h2>Increase likes on a post</h2>
+            </a>
+            <a href="{% url 'comment' %}" class="option">
+                <div class="icon">💬</div>
+                <h2>Increase comments on a post</h2>
+            </a>
+            <a href="{% url 'follow' %}" class="option">
+                <div class="icon">👥</div>
+                <h2>Increase followers</h2>
+            </a>
+        </div>
+
+        <p class="disclaimer">Disclaimer: Use this tool responsibly and in accordance with Instagram's terms of service.</p>
+    </div>
+</body>
+</html>
